@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aakib Digital Hub | Web, App & AI Automation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #020617; }
+        .chart-container { 
+            position: relative; 
+            width: 100%; 
+            max-width: 800px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            height: 350px; 
+            max-height: 400px; 
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(71, 85, 105, 0.3);
+        }
+        .accent-gradient {
+            background: linear-gradient(135deg, #6366f1 0%, #22d3ee 100%);
+        }
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(99, 102, 241, 0.1);
+            color: #818cf8;
+            font-weight: bold;
+            font-size: 1.25rem;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+    </style>
+</head>
+<body class="text-slate-200 selection:bg-indigo-500/30">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-card border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 accent-gradient rounded-lg flex items-center justify-center text-white font-extrabold text-xl shadow-lg">A</div>
+                <span class="text-xl font-extrabold tracking-tight text-white">Aakib <span class="text-indigo-400">Digital Hub</span></span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-semibold uppercase tracking-wider text-slate-400">
+                <a href="#services" class="hover:text-indigo-400 transition-colors">Services</a>
+                <a href="#impact" class="hover:text-indigo-400 transition-colors">AI Impact</a>
+                <a href="#process" class="hover:text-indigo-400 transition-colors">Process</a>
+                <a href="#contact" class="px-5 py-2 accent-gradient text-white rounded-full hover:opacity-90 transition-all shadow-lg shadow-indigo-500/20">Hire Us</a>
+            </div>
+            <button class="md:hidden text-white" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')">
+                &#9776;
+            </button>
+        </div>
+        <!-- Mobile Nav -->
+        <div id="mobile-nav" class="hidden md:hidden bg-slate-900 border-b border-slate-800 p-6 space-y-4 text-center">
+            <a href="#services" class="block text-slate-300">Services</a>
+            <a href="#impact" class="block text-slate-300">AI Impact</a>
+            <a href="#process" class="block text-slate-300">Process</a>
+            <a href="#contact" class="block text-indigo-400 font-bold">Hire Us</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-40 pb-20 px-6">
+        <div class="max-w-5xl mx-auto text-center">
+            <div class="inline-block px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-semibold mb-6">
+                Next-Gen Automation Agency
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-8">
+                Building the Future of <br>
+                <span class="text-transparent bg-clip-text accent-gradient">Intelligent Business</span>
+            </h1>
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                We design and deploy high-performance websites, scalable Android applications, and custom AI agents that automate your success.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="px-8 py-4 accent-gradient rounded-xl text-white font-bold text-lg shadow-2xl shadow-indigo-500/40 transform hover:-translate-y-1 transition-all">Start Your Project</a>
+                <a href="#services" class="px-8 py-4 bg-slate-800 rounded-xl text-white font-bold text-lg border border-slate-700 hover:bg-slate-700 transition-all">View Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Dashboard (Interactive Data Section) -->
+    <section id="impact" class="py-24 bg-slate-950/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">The AI Automation Advantage</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">
+                    Automation isn't just about code; it's about reclaiming thousands of hours every year. See how AI agents transform operational efficiency.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-12 items-center">
+                <div class="lg:col-span-2 glass-card p-8 rounded-3xl">
+                    <div class="flex justify-between items-center mb-8">
+                        <h3 class="text-xl font-bold text-white">Efficiency Gain (Hours Saved/Week)</h3>
+                        <div class="flex gap-2">
+                            <div class="w-3 h-3 rounded-full bg-indigo-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-cyan-400"></div>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="efficiencyChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-indigo-500">
+                        <div class="text-sm text-indigo-400 font-bold uppercase mb-1">Time Saved</div>
+                        <div class="text-4xl font-extrabold text-white">85%</div>
+                        <p class="text-slate-400 text-sm mt-2">Reduction in repetitive data entry tasks using our custom AI Agents.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-cyan-400">
+                        <div class="text-sm text-cyan-400 font-bold uppercase mb-1">Response Time</div>
+                        <div class="text-4xl font-extrabold text-white">&lt; 2s</div>
+                        <p class="text-slate-400 text-sm mt-2">Instant customer support resolution through intelligent trained LLM agents.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-white">
+                        <div class="text-sm text-slate-300 font-bold uppercase mb-1">Scale Factor</div>
+                        <div class="text-4xl font-extrabold text-white">10x</div>
+                        <p class="text-slate-400 text-sm mt-2">Capacity increase for web applications with automated cloud scaling.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section id="services" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16">
+                <h2 class="text-4xl font-extrabold text-white mb-4 text-center">Our Expertise</h2>
+                <p class="text-slate-400 text-center max-w-xl mx-auto">End-to-end digital craftsmanship tailored for your specific business objectives.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div class="glass-card p-8 rounded-3xl hover:bg-slate-800/80 transition-all group">
+                    <div class="icon-box mb-6 group-hover:scale-110 transition-transform">W</div>
+                    <h3 class="text-xl font-bold text-white mb-4">Web Development</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        High-speed, SEO-optimized React & Tailwind applications built for massive user engagement and sales.
+                    </p>
+                    <ul class="text-xs space-y-2 text-indigo-300">
+                        <li>• Custom E-commerce</li>
+                        <li>• SaaS Dashboards</li>
+                        <li>• Real-time Analytics</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass-card p-8 rounded-3xl hover:bg-slate-800/80 transition-all group">
+                    <div class="icon-box mb-6 group-hover:scale-110 transition-transform">A</div>
+                    <h3 class="text-xl font-bold text-white mb-4">Android Apps</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Native-feel cross-platform mobile apps published to Play Store with robust offline capabilities.
+                    </p>
+                    <ul class="text-xs space-y-2 text-indigo-300">
+                        <li>• Native Android Dev</li>
+                        <li>• Flutter/React Native</li>
+                        <li>• UI/UX Excellence</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass-card p-8 rounded-3xl hover:bg-slate-800/80 transition-all group">
+                    <div class="icon-box mb-6 group-hover:scale-110 transition-transform">AI</div>
+                    <h3 class="text-xl font-bold text-white mb-4">AI Agents</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Specialized autonomous agents that handle support, lead gen, and research 24/7 on your behalf.
+                    </p>
+                    <ul class="text-xs space-y-2 text-indigo-300">
+                        <li>• Custom GPT Training</li>
+                        <li>• Support Chatbots</li>
+                        <li>• Voice AI Systems</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="glass-card p-8 rounded-3xl hover:bg-slate-800/80 transition-all group">
+                    <div class="icon-box mb-6 group-hover:scale-110 transition-transform">Z</div>
+                    <h3 class="text-xl font-bold text-white mb-4">AI Automation</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Connecting your tech stack (Zapier, Make, n8n) with AI logic to remove manual work completely.
+                    </p>
+                    <ul class="text-xs space-y-2 text-indigo-300">
+                        <li>• Workflow Design</li>
+                        <li>• API Integrations</li>
+                        <li>• Content Pipelines</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-24 bg-slate-950/50">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-white mb-16 text-center">Our Roadmap to Success</h2>
+            <div class="space-y-12">
+                <div class="flex gap-6 items-start">
+                    <div class="w-12 h-12 flex-shrink-0 rounded-full accent-gradient flex items-center justify-center text-white font-bold">1</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Discovery & Strategy</h3>
+                        <p class="text-slate-400">We analyze your current manual workflows and identify the highest ROI automation opportunities.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6 items-start">
+                    <div class="w-12 h-12 flex-shrink-0 rounded-full accent-gradient flex items-center justify-center text-white font-bold">2</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Architecture Design</h3>
+                        <p class="text-slate-400">Our architects design the database, app structure, and AI prompt logic to ensure scalability.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6 items-start">
+                    <div class="w-12 h-12 flex-shrink-0 rounded-full accent-gradient flex items-center justify-center text-white font-bold">3</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Agile Development</h3>
+                        <p class="text-slate-400">Incremental builds with bi-weekly updates, allowing you to see the product come to life.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6 items-start">
+                    <div class="w-12 h-12 flex-shrink-0 rounded-full accent-gradient flex items-center justify-center text-white font-bold">4</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Deploy & Optimize</h3>
+                        <p class="text-slate-400">We launch on the cloud or Play Store and provide 24/7 monitoring and AI fine-tuning.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6">
+        <div class="max-w-4xl mx-auto glass-card p-10 md:p-16 rounded-[40px] shadow-2xl">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-white mb-4">Let's Build Something Great</h2>
+                <p class="text-slate-400">Fill out the form below and Aakib will get back to you within 24 hours.</p>
+            </div>
+            <form class="space-y-6" id="contactForm">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-2">Your Name</label>
+                        <input type="text" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="John Doe" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-300 mb-2">Email Address</label>
+                        <input type="email" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="john@example.com" required>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">Select Service</label>
+                    <select class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors">
+                        <option>Full Website Build</option>
+                        <option>Android App Development</option>
+                        <option>Custom AI Agent</option>
+                        <option>End-to-end AI Automation</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">Project Brief</label>
+                    <textarea rows="4" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="Describe your vision..."></textarea>
+                </div>
+                <button type="submit" class="w-full py-4 accent-gradient rounded-xl text-white font-bold text-lg hover:shadow-indigo-500/30 shadow-xl transition-all">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-slate-800 text-center">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center justify-center space-x-3 mb-6">
+                <div class="w-8 h-8 accent-gradient rounded-md flex items-center justify-center text-white font-bold text-sm">A</div>
+                <span class="text-lg font-bold text-white tracking-tight">Aakib Digital Hub</span>
+            </div>
+            <p class="text-slate-500 text-sm mb-6">&copy; 2024 Aakib Digital Hub. All rights reserved.</p>
+            <div class="flex justify-center space-x-6 text-slate-400 text-sm">
+                <a href="privacy.html" class="hover:text-indigo-400">Privacy Policy</a>
+                <a href="#" class="hover:text-indigo-400">Terms of Service</a>
+                <a href="https://github.com/aakibdigitalhub" class="hover:text-indigo-400">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Efficiency Gain Chart Implementation
+        const ctx = document.getElementById('efficiencyChart').getContext('2d');
+        const efficiencyChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Support', 'Sales', 'Data Entry', 'HR/Ops', 'Marketing'],
+                datasets: [
+                    {
+                        label: 'Manual Process (Hours)',
+                        data: [40, 35, 50, 30, 25],
+                        backgroundColor: 'rgba(71, 85, 105, 0.4)',
+                        borderRadius: 8,
+                    },
+                    {
+                        label: 'With Aakib AI (Hours)',
+                        data: [5, 12, 4, 8, 10],
+                        backgroundColor: '#6366f1',
+                        borderRadius: 8,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: { color: '#94a3b8', font: { family: 'Plus Jakarta Sans', weight: 'bold' } }
+                    },
+                    tooltip: {
+                        backgroundColor: '#1e293b',
+                        titleColor: '#fff',
+                        bodyColor: '#cbd5e1',
+                        padding: 12,
+                        cornerRadius: 12,
+                        displayColors: true
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: { color: '#64748b' },
+                        grid: { display: false }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: { color: '#64748b' },
+                        grid: { color: 'rgba(71, 85, 105, 0.1)' }
+                    }
+                }
+            }
+        });
+
+        // Form Submission Logic
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! Aakib will contact you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
